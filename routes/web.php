@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('lead_collection');
 });
+
+Route::resource('lead_collection', 'LeadsController');
+
+Auth::routes();

@@ -20,3 +20,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+$(document).ready(function(){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(".delete-lead").click(function(event){
+        event.preventDefault();
+        $.post({url: '/lead_collection/' + $(event.target).data('id'), type: 'DELETE' });
+        $(event.target).closest('.lead').hide();
+    });
+});
